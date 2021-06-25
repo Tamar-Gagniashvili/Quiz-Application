@@ -1,20 +1,45 @@
 import './Options.css';
 import * as actions from '../../store/index';
 import { connect } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const Options = (props) => {
+    // შექმენი ინფუთების შესაბამისი სთეითები
+    // დააბაინდე ინფუთბთან (მიანიჭე ველიუ და ჩეინჯჰენდლერი)
+    // შექმენი ღილაკის ჰენდლერი ფუნქცია
+    // აკინძე შენი სთეითბი დატა ობიექტის სახით
+    // გააგზავნე რექვესთი
 
-    const { onGet } = props;
+    const [inputData, setInputData] = useState({
+        amount:10,
+        category: 0,
+        difficulty: 'any',
+        type:'any'
+    })
+
+    const changeHandler = (event) => {
+        const { name, value} = event.target;
+
+        setInputData({...inputData, [name]:value})
+    }
+
+    const submitHandler = (event) => {
+        // TODO validation
+        props.onGetQuestions(inputData)
+    }
+
+
+
+    const { onGet, onGetQuestions } = props;
 
     useEffect(function () {
         onGet();
-    }, [onGet])
+    }, [onGet, onGetQuestions])
 
 
     const categoryOptions = props.categories.map((category) => {
-        return <option value={category.id}>{category.name}</option>
+        return <option key={category.id} value={category.id}>{category.name}</option>
     })
 
 
@@ -26,20 +51,20 @@ const Options = (props) => {
             <form>
                 <div className="formWrapper">
                     <label>Questions:</label>
-                    <input type="number" name="trivia_amount" className="formControl" min="1" max="50" />
+                    <input type="number" name="amount" className="formControl" min="1" max="50" value={inputData.amount} onChange={changeHandler}/>
                 </div>
 
                 <div className="formWrapper">
                     <label>Category:</label>
-                    <select name="trivia_category" className="formControl">
-                        <option value='any'>Any Category</option>
+                    <select name="category"value={inputData.category} onChange={changeHandler} className="formControl">
+                        <option value="0" >Any Category</option>
                         {categoryOptions}
                     </select>
                 </div>
 
                 <div className="formWrapper">
                     <label>Difficulty:</label>
-                    <select name="trivia_difficulty" className="formControl">
+                    <select name="difficulty" className="formControl" value={inputData.difficulty} onChange={changeHandler}>
                         <option value="any">Any Difficulty</option>
                         <option value="easy">Easy</option>
                         <option value="medium">Medium</option>
@@ -49,7 +74,7 @@ const Options = (props) => {
 
                 <div className="formWrapper">
                     <label>Type:</label>
-                    <select name="trivia_type" className="formControl">&gt;
+                    <select name="type" className="formControl" value={inputData.type} onChange={changeHandler}>&gt;
                         <option value="any">Any Type</option>
                         <option value="multiple">Multiple Choice</option>
                         <option value="boolean">True / False</option>
@@ -57,7 +82,7 @@ const Options = (props) => {
                 </div>
 
                 <div className="formWrapper">
-                    <button>Submit</button>
+                    <button type="button" onClick={submitHandler}>Submit</button>
                 </div>
             </form>
         </div>
@@ -75,7 +100,8 @@ export const mapStateToProps = (state) => {
 
 export const mapDispatchToProps = (dispatch) => {
     return {
-        onGet: () => dispatch(actions.getCategory())
+        onGet: () => dispatch(actions.getCategory()),
+        onGetQuestions: (data) => dispatch(actions.getQuestionary(data)),
     }
 }
 

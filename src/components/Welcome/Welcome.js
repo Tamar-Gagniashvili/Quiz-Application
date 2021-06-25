@@ -13,7 +13,7 @@ const Welcome = () => {
 
                     </div>
                     <div className="welcomePhoto">
-                        <img src={QuizTime} alt="Quiz-Time Photo" />
+                        <img src={QuizTime} alt="Quiz-Time" />
                     </div>
                 </div>
                 <div className="buttonWrapper">
