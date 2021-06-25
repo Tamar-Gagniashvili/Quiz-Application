@@ -10,6 +10,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import categoryReducer from './store/reducers/category';
+import questionaryReducer from './store/reducers/questionary';
 
 
 const composeEnhancers =
@@ -20,7 +21,8 @@ const composeEnhancers =
 
 const rootReducer = combineReducers(
   {
-    category: categoryReducer
+    category: categoryReducer,
+    questionary: questionaryReducer
   }
 );
 
