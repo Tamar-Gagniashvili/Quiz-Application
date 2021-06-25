@@ -1,0 +1,36 @@
+.optionsWrapper{
+    width: 50%;
+}
+
+.optionsWrapper h1{
+    font-size: 2.5vw;
+    color: white;
+    text-align: center;
+}
+
+.formWrapper{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+}
+
+label{
+    margin-bottom: 5px;
+}
+
+.formControl{
+    height: 4vh;
+}
+
+.formWrapper button{
+    width: 40%;
+    margin:auto;
+    border: none;
+    border-radius: 16px;
+    height: 4vh;
+    transition: 0.3s;
+}
+.formWrapper button:hover{
+    cursor: pointer;
+    background-color: rgb(20, 220, 220);
+}
