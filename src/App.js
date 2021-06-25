@@ -11,10 +11,9 @@ function App() {
       {/* Routing Here */}
       {/* <Welcome /> */}
       <Layout>
-        {/* <Options /> */}
+        <Options />
         {/* <Questionary/> */}
         {/* <Results/> */}
-        <Questionary />
       </Layout>
     </div>
   );

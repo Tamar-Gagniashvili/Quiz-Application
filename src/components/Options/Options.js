@@ -1,8 +1,17 @@
 import './Options.css';
+import * as actions from '../../store/index';
+import { connect } from 'react-redux';
+import { useEffect } from 'react';
 
 
+const Options = (props) => {
 
-const Options = () => {
+    const { onGet } = props;
+
+    useEffect(function () {
+        onGet();
+    }, [onGet])
+
     return (
         <div className="optionsWrapper">
             <h1>
@@ -11,12 +20,12 @@ const Options = () => {
             <form>
                 <div className="formWrapper">
                     <label>Questions:</label>
-                    <input type="number" name="trivia_amount" class="formControl" min="1" max="50" />
+                    <input type="number" name="trivia_amount" className="formControl" min="1" max="50" />
                 </div>
 
                 <div className="formWrapper">
                     <label>Category:</label>
-                    <select name="trivia_category" class="formControl">
+                    <select name="trivia_category" className="formControl">
                         <option value="any">Any Category</option>
                         <option value="9">General Knowledge</option>
                         <option value="10">Entertainment: Books</option>
@@ -28,7 +37,7 @@ const Options = () => {
 
                 <div className="formWrapper">
                     <label>Difficulty:</label>
-                    <select name="trivia_difficulty" class="formControl">
+                    <select name="trivia_difficulty" className="formControl">
                         <option value="any">Any Difficulty</option>
                         <option value="easy">Easy</option>
                         <option value="medium">Medium</option>
@@ -38,7 +47,7 @@ const Options = () => {
 
                 <div className="formWrapper">
                     <label>Type:</label>
-                    <select name="trivia_type" class="formControl">&gt;
+                    <select name="trivia_type" className="formControl">&gt;
                         <option value="any">Any Type</option>
                         <option value="multiple">Multiple Choice</option>
                         <option value="boolean">True / False</option>
@@ -53,4 +62,21 @@ const Options = () => {
     )
 }
 
-export default Options
+
+export const mapStateToProps = (state) => {
+    return {
+        error: state.category.error,
+        loading: state.category.loading,
+        categories: state.category.categories
+    }
+}
+
+export const mapDispatchToProps = (dispatch) => {
+    return {
+        onGet: () => dispatch(actions.getCategory())
+    }
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Options);
