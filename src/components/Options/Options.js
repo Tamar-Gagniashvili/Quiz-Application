@@ -12,6 +12,12 @@ const Options = (props) => {
         onGet();
     }, [onGet])
 
+
+    const categoryOptions = props.categories.map((category) => {
+        return <option value={category.id}>{category.name}</option>
+    })
+
+
     return (
         <div className="optionsWrapper">
             <h1>
@@ -26,12 +32,8 @@ const Options = (props) => {
                 <div className="formWrapper">
                     <label>Category:</label>
                     <select name="trivia_category" className="formControl">
-                        <option value="any">Any Category</option>
-                        <option value="9">General Knowledge</option>
-                        <option value="10">Entertainment: Books</option>
-                        <option value="11">Entertainment: Film</option>
-                        <option value="12">Entertainment: Music</option>
-                        <option value="13">Entertainment: Musicals &amp; Theatres</option>
+                        <option value='any'>Any Category</option>
+                        {categoryOptions}
                     </select>
                 </div>
 
