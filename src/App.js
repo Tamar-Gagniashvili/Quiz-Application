@@ -1,4 +1,6 @@
 import './App.css';
+import {Switch, Route, Redirect} from 'react-router';
+
 import Welcome from './components/Welcome/Welcome';
 import Options from './components/Options/Options';
 import Layout from './components/UI/Layout/Layout';
@@ -8,13 +10,14 @@ import Results from './components/Results/Results';
 function App() {
   return (
     <div className="App">
-      {/* Routing Here */}
-      {/* <Welcome /> */}
-      <Layout>
-        <Options />
-        {/* <Questionary/> */}
-        {/* <Results/> */}
-      </Layout>
+      <Switch>
+        <Route path='/' exact component={Welcome}/>
+        <Layout>
+          <Route path='/options' component={Options}/>
+          <Route path='/questionary' component={Questionary}/>
+          <Route path='/results' component={Results}/>
+        </Layout>
+      </Switch>
     </div>
   );
 }
