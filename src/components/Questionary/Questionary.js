@@ -1,39 +1,53 @@
 import './Questionary.css'
+import { connect } from 'react-redux';
 
-const Questionary = () => {
+import { useHistory } from 'react-router-dom';
+
+const Questionary = (props) => {
+
+    const history = useHistory();
+
+    const submitHandler = (event) => {
+        history.push('/results')
+    }
+
+    const questions = props.questions.map((item) => {
+
+        // sort to make correnct answer in random position
+        const answersRaw = [...item.incorrect_answers,item.correct_answer];
+        answersRaw.sort()
+        const answers = answersRaw.map((answer,index)=>{
+            return <div className="form-check disabled">
+                    <input className="" type="radio" name={item.question} value={answer} />
+                    <label className="" for={item.question}>
+                        {answer}
+                    </label>
+                </div>
+        })
+        return (
+            <div>
+                <h3>{item.question}</h3>
+                {answers}
+            </div>
+        )
+    })
+
     return (
         <div className="questionary">
-            <h3>Here is the Question</h3>
-            <div className="form-check disabled">
-                <input className="" type="radio" name="nm" value="option3" />
-                <label className="" for="nm">
-                    Answer 1
-                </label>
-            </div>
-            <div className="form-check disabled">
-                <input className="" type="radio" name="nm" value="option3" />
-                <label className="" for="nm">
-                    Answer 2
-                </label>
-            </div>
-            <div className="form-check disabled">
-                <input className="" type="radio" name="nm" value="option3" />
-                <label className="" for="nm">
-                    Answer 3
-                </label>
-            </div>
-            <div className="form-check disabled">
-                <input className="" type="radio" name="nm" value="option3" />
-                <label className="" for="nm">
-                    Answer 4
-                </label>
-            </div>
+            {questions}
+            
             <div className="questionaryButton">
-                <button>Submit</button>
-            </div>
+                <button onClick={submitHandler}>Submit</button>
+            </div> 
 
         </div>
     )
 }
 
-export default Questionary;
+export const mapStateToProps = (state) => {
+    return {
+        questions: state.questionary.questions
+    }
+}
+
+export default connect(mapStateToProps)(Questionary);

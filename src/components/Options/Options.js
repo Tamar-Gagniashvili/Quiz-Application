@@ -2,14 +2,12 @@ import './Options.css';
 import * as actions from '../../store/index';
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 
 const Options = (props) => {
-    // შექმენი ინფუთების შესაბამისი სთეითები
-    // დააბაინდე ინფუთბთან (მიანიჭე ველიუ და ჩეინჯჰენდლერი)
-    // შექმენი ღილაკის ჰენდლერი ფუნქცია
-    // აკინძე შენი სთეითბი დატა ობიექტის სახით
-    // გააგზავნე რექვესთი
+
+    const history = useHistory();
 
     const [inputData, setInputData] = useState({
         amount:10,
@@ -18,25 +16,23 @@ const Options = (props) => {
         type:'any'
     })
 
+    const { onGet } = props;
+
+    useEffect(function () {
+        onGet();
+    }, [onGet])
+
     const changeHandler = (event) => {
         const { name, value} = event.target;
 
         setInputData({...inputData, [name]:value})
     }
 
-    const submitHandler = (event) => {
+    const submitHandler = () => {
         // TODO validation
         props.onGetQuestions(inputData)
+        history.push('/questionary')
     }
-
-
-
-    const { onGet, onGetQuestions } = props;
-
-    useEffect(function () {
-        onGet();
-    }, [onGet, onGetQuestions])
-
 
     const categoryOptions = props.categories.map((category) => {
         return <option key={category.id} value={category.id}>{category.name}</option>
@@ -56,7 +52,7 @@ const Options = (props) => {
 
                 <div className="formWrapper">
                     <label>Category:</label>
-                    <select name="category"value={inputData.category} onChange={changeHandler} className="formControl">
+                    <select name="category" value={inputData.category} onChange={changeHandler} className="formControl">
                         <option value="0" >Any Category</option>
                         {categoryOptions}
                     </select>

@@ -1,7 +1,14 @@
 import './Welcome.css'
 import QuizTime from '../../assets/quiz-time.jpg';
+import { useHistory } from 'react-router-dom';
 
 const Welcome = () => {
+
+    const history = useHistory();
+
+    const submitHandler = (event) => {
+        history.push('/options')
+    }
     return (
         <div className="welcomeWrapper">
             <div className="box">
@@ -17,7 +24,7 @@ const Welcome = () => {
                     </div>
                 </div>
                 <div className="buttonWrapper">
-                    <button className="welcomeButton">Get Started</button>
+                    <button onClick={submitHandler} className="welcomeButton">Get Started</button>
                 </div>
             </div>
         </div>

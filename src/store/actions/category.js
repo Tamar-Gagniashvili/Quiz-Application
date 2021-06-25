@@ -28,6 +28,7 @@ export const getCategory = () => {
 
         axios.get(`https://opentdb.com/api_category.php`)
             .then(response => {
+                console.log(response)
                 dispatch(getCategorySuccess(response.data.trivia_categories));
             })
             .catch(err => {
