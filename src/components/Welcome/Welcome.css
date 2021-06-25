@@ -1,0 +1,68 @@
+.welcomeWrapper{
+    width: 100%;
+    height: 100vh;
+    background-color: rgb(16, 82, 112);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    width: 50%;
+    font-weight: bold;
+    background-color: rgb(122, 167, 143);
+    display: flex;
+    flex-direction: column;
+}
+
+.contentWrapper{
+    margin: 20px;
+    display: flex;
+    align-items: center
+}
+
+.welcomeText{
+    width: 50%;
+    height: auto;
+    text-align: center;
+    padding: 20px;
+}
+.welcomeText h1{
+    font-size: 3rem;
+}
+
+.welcomePhoto{
+    width: 50%;
+    padding: 20px;
+
+}
+
+.welcomePhoto img{
+    width: 100%;
+}
+
+/* /////////////////////button///////////////////// */
+
+.buttonWrapper{
+    background-color: rgb(16, 82, 112);
+}
+
+.welcomeButton{
+    position: relative;
+    top: -40px;
+    left: 18%;
+    width: 100px;
+    height: 100px;
+    padding: 26px;
+    background-color: rgb(60, 146, 118);
+    border-radius: 50px;
+    box-shadow: 0 0 70px 0 #8fb48f;
+    transition: 0.3s;
+}
+
+.welcomeButton:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+    background-color:rgb(65, 120, 124);
+}
+.blur {filter: blur(4px);}

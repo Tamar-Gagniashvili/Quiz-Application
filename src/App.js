@@ -1,11 +1,11 @@
 import './App.css';
+import Welcome from './components/Welcome/Welcome'
 
 function App() {
   return (
     <div className="App">
-      <h1>
-        Time to hack!!!
-      </h1>
+      {/* Routing Here */}
+      <Welcome />
     </div>
   );
 }
