@@ -34,8 +34,6 @@ export const getQuestionary = (data) => {
     return dispatch => {
         dispatch(getQuestionaryStart());
  
-        console.log(data)
-
         let URL = `https://opentdb.com/api.php?amount=${data.amount}`;
         if(data.category !== 0){
             URL += `&category=${data.category}`

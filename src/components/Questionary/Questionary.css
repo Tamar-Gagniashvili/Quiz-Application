@@ -28,3 +28,14 @@
     cursor: pointer;
     background-color: rgb(214, 26, 26);
 }
+.backErrorWrapper{
+    display: flex;
+    flex-direction: column;
+}
+.returnButton{
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    background-color: lightcoral;
+    width:100px;
+}

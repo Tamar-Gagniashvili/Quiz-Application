@@ -10,8 +10,8 @@ const Results = () => {
     }
     return (
         <div className="results">
-            <h1>Your Score : 0</h1>
-            <h2>Best Score: 10</h2>
+            <h1>Your Score : {localStorage.getItem('score')}</h1>
+            <h2>Best Score:  {localStorage.getItem('bestScore')}</h2>
             <div className="resultsButon">
                 <button onClick={submitHandler}>Restart</button>
             </div>

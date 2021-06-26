@@ -1,5 +1,8 @@
-.App{
+body{
     background-color: #946a9e;
+}
+
+.App{
     display: flex;
     flex-direction: column;
     height: 100vh;
@@ -27,6 +30,12 @@ nav ul li{
     border: none;
     border-radius: 16px;
     color: white;
+}
+
+nav ul li:hover{
+    background-color: burlywood;
+    transform: scale(1.1);
+    cursor: pointer;
 }
 
 .content{

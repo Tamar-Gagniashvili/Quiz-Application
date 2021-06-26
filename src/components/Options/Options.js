@@ -10,11 +10,12 @@ const Options = (props) => {
     const history = useHistory();
 
     const [inputData, setInputData] = useState({
-        amount:10,
+        amount: 10,
         category: 0,
         difficulty: 'any',
-        type:'any'
+        type: 'any'
     })
+    const [errorMessage, setErrorMessage] = useState('')
 
     const { onGet } = props;
 
@@ -23,15 +24,21 @@ const Options = (props) => {
     }, [onGet])
 
     const changeHandler = (event) => {
-        const { name, value} = event.target;
+        const { name, value } = event.target;
 
-        setInputData({...inputData, [name]:value})
+        setInputData({ ...inputData, [name]: value })
     }
 
     const submitHandler = () => {
-        // TODO validation
-        props.onGetQuestions(inputData)
-        history.push('/questionary')
+        console.log(inputData.amount)
+        if (inputData.amount < 1 || inputData.amount > 50) {
+            setErrorMessage('Please, choose the number from 1 to 50')
+        }
+        else {
+            props.onGetQuestions(inputData)
+            history.push('/questionary')
+            setErrorMessage('')
+        }
     }
 
     const categoryOptions = props.categories.map((category) => {
@@ -41,13 +48,14 @@ const Options = (props) => {
 
     return (
         <div className="optionsWrapper">
+            {errorMessage !== '' ? <p>{errorMessage}</p> : null}
             <h1>
                 Choose the Sections
             </h1>
             <form>
                 <div className="formWrapper">
                     <label>Questions:</label>
-                    <input type="number" name="amount" className="formControl" min="1" max="50" value={inputData.amount} onChange={changeHandler}/>
+                    <input type="number" name="amount" className="formControl" min="1" max="50" value={inputData.amount} onChange={changeHandler} />
                 </div>
 
                 <div className="formWrapper">
@@ -90,7 +98,8 @@ export const mapStateToProps = (state) => {
     return {
         error: state.category.error,
         loading: state.category.loading,
-        categories: state.category.categories
+        categories: state.category.categories,
+        questions: state.questionary.questions
     }
 }
 

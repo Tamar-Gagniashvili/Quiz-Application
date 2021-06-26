@@ -1,13 +1,16 @@
 import './Questionary.css'
 import { connect } from 'react-redux';
+import { useState } from 'react';
 
-import { useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 
 
 const Questionary = (props) => {
 
     const history = useHistory();
+
+    let errorMessage = ""
 
     function getCorrectAnswer(question) {
         let correctAnswer;
@@ -19,9 +22,7 @@ const Questionary = (props) => {
         return correctAnswer
     }
 
-
     const submitHandler = (event) => {
-        event.preventDefault();
 
         const inputs = document.querySelectorAll('input:checked')
         let result = 0;
@@ -30,14 +31,20 @@ const Questionary = (props) => {
                 result++;
             }
         });
-
-        console.log(result);
+        localStorage.setItem('score', result);
+        const bestScore = localStorage.getItem('bestScore');
+        if (bestScore == null || bestScore < result) {
+            localStorage.setItem('bestScore', result);
+        }
 
         history.push('/results')
     }
 
-    const questions = props.questions.map((item) => {
 
+
+
+
+    const questions = props.questions.map((item) => {
         // sort to make correnct answer in random position
         const answersRaw = [...item.incorrect_answers, item.correct_answer];
         answersRaw.sort()
@@ -57,17 +64,30 @@ const Questionary = (props) => {
         )
     })
 
+
+    if (questions.length === 0 && errorMessage === "") {
+        errorMessage = "No questions found on this combination"
+    }
+
+
     return (
         <div className="questionary">
-            <form name="form1">
-
-                {questions}
-
-                <div className="questionaryButton">
-                    <button onClick={submitHandler} type="button">Submit</button>
+            {errorMessage != "" ? (
+                <div className="backErrorWrapper">
+                    {errorMessage}
+                    <NavLink to="/options" className="returnButton">GO BACK</NavLink>
                 </div>
-            </form>
+            )
+                :
+                (
+                    <form name="form1">
+                        {questions}
 
+                        <div className="questionaryButton">
+                            <button onClick={submitHandler}>Submit</button>
+                        </div>
+                    </form>
+                )}
         </div>
     )
 }
