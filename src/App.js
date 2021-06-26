@@ -1,5 +1,5 @@
 import './App.css';
-import {Switch, Route, Redirect} from 'react-router';
+import {Switch, Route} from 'react-router';
 
 import Welcome from './components/Welcome/Welcome';
 import Options from './components/Options/Options';

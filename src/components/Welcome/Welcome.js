@@ -5,10 +5,10 @@ import { useHistory } from 'react-router-dom';
 const Welcome = () => {
 
     const history = useHistory();
-
-    const submitHandler = (event) => {
+    const submitHandler = () => {
         history.push('/options')
     }
+    
     return (
         <div className="welcomeWrapper">
             <div className="box">
@@ -17,7 +17,6 @@ const Welcome = () => {
                         <h1>
                             Welcome to the Quiz 𓀉
                         </h1>
-
                     </div>
                     <div className="welcomePhoto">
                         <img src={QuizTime} alt="Quiz-Time" />

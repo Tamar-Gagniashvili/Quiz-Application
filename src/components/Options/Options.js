@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-
 const Options = (props) => {
 
     const history = useHistory();
@@ -15,6 +14,7 @@ const Options = (props) => {
         difficulty: 'any',
         type: 'any'
     })
+
     const [errorMessage, setErrorMessage] = useState('')
 
     const { onGet } = props;
@@ -23,14 +23,14 @@ const Options = (props) => {
         onGet();
     }, [onGet])
 
+
+
     const changeHandler = (event) => {
         const { name, value } = event.target;
-
         setInputData({ ...inputData, [name]: value })
     }
 
     const submitHandler = () => {
-        console.log(inputData.amount)
         if (inputData.amount < 1 || inputData.amount > 50) {
             setErrorMessage('Please, choose the number from 1 to 50')
         }

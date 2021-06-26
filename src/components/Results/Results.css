@@ -29,15 +29,17 @@
     font-weight: 600;
 }
 
-.resultsButon button{
+.resultsButon a{
+    text-decoration: none;
     padding: 8px;
     border: none;
     border-radius: 5px;
     background-color: rgb(16, 82, 112);
     color: white;
+    transition: 0.5s;
 }
 
-.resultsButon button:hover{
+.resultsButon a:hover{
     cursor: pointer;
     background-color: rgb(122, 167, 143);
     color: black;
