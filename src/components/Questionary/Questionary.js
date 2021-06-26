@@ -1,10 +1,13 @@
 import './Questionary.css'
 import { connect } from 'react-redux';
-import { useState } from 'react';
 
 import { NavLink, useHistory } from 'react-router-dom';
 
-
+function decodeHtml(text) {
+    var txt = document.createElement("textarea");
+    txt.innerHTML = text;
+    return txt.value;
+}
 
 const Questionary = (props) => {
 
@@ -56,9 +59,10 @@ const Questionary = (props) => {
                 </label>
             </div>
         })
+
         return (
             <div>
-                <h3>{item.question}</h3>
+                <h3>{decodeHtml(item.question)}</h3>
                 {answers}
             </div>
         )

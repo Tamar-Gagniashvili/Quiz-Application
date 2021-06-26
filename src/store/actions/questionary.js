@@ -33,18 +33,18 @@ export const getQuestionaryFail = () => {
 export const getQuestionary = (data) => {
     return dispatch => {
         dispatch(getQuestionaryStart());
- 
+
         let URL = `https://opentdb.com/api.php?amount=${data.amount}`;
-        if(data.category !== 0){
+        if (data.category !== 0) {
             URL += `&category=${data.category}`
         }
-        if(data.difficulty !== 'any'){
+        if (data.difficulty !== 'any') {
             URL += `&difficulty=${data.difficulty}`
         }
-        if(data.type !== 'any'){
+        if (data.type !== 'any') {
             URL += `&type=${data.type}`
         }
-
+        // URL += '&encode=url3986'
         axios.get(URL)
             .then(response => {
                 dispatch(getQuestionarySuccess(response.data.results))
