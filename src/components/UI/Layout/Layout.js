@@ -4,11 +4,16 @@ import './Layout.css';
 
 const Layout = (props) => {
 
+    function joke(){
+        alert('You Clicked The Button!\nTHANK YOU!')
+    }
+
+
     return (
         <>
             <nav>
                 <ul>
-                    <li>Click Me</li>
+                    <li onClick={joke}>Click Me</li>
                 </ul>
             </nav>
             <div className="content">
