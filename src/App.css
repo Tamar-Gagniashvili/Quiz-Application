@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500&family=Handlee&family=Mukta:wght@200&family=Noto+Sans+HK:wght@300&family=Overpass:wght@300&family=Yanone+Kaffeesatz:wght@200&display=swap');
+
+.App{
+    font-family: 'Mukta', sans-serif;
+    font-weight: 600;
+}

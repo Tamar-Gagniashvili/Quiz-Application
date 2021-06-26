@@ -48,7 +48,6 @@ const Options = (props) => {
 
     return (
         <div className="optionsWrapper">
-            {errorMessage !== '' ? <p>{errorMessage}</p> : null}
             <h1>
                 Choose the Sections
             </h1>
@@ -89,6 +88,7 @@ const Options = (props) => {
                     <button type="button" onClick={submitHandler}>Submit</button>
                 </div>
             </form>
+            {errorMessage !== '' ? <p>{errorMessage}</p> : null}
         </div>
     )
 }
