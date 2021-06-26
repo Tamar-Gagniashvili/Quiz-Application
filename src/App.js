@@ -11,9 +11,9 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path='/' exact component={Welcome}/>
+        {/* <Route path='/' exact component={Welcome}/> */}
         <Layout>
-          <Route path='/options' component={Options}/>
+          <Route path='/' exact component={Options}/>
           <Route path='/questionary' component={Questionary}/>
           <Route path='/results' component={Results}/>
         </Layout>
